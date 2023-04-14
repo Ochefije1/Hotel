@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Document</title>
+</head>
+
+<body>
+
+    <!-- login details -->
+    <div id="login1"
+        class="display ml-60 rounded-xl bg-purple-400 h-1/2 w-1/2 grid justify-center absolute top-40 text-black left-1/4 z-10 p-4">
+        <div class="space-x-10">
+            <label for="name">Name</label>
+            <input id="name" class=" rounded-xl m-2 p-2" placeholder="fullname" type="text">
+        </div>
+
+        <div class="space">
+            <label for="password">Password</label>
+            <input type="password" class=" rounded-xl m-3 p-2">
+        </div>
+        <div class="flex justify-center rounded-xl">
+            <label for="submit"></label>
+            <button onclick="login()" id="submit"
+                class="border-2 border-white border-solid rounded-xl p-2">Submit</button>
+        </div>
+    </div>
+    <div class="m-2 max-h-screen">
+        <header class="fixed right-0 top-0 left-60 bg-purple-500">
+            <div id="display" class="w-full flex-cols">
+                <div class="w-full h-15 flex justify-between bg-pink-300 p-2">
+
+                    <!---SEARCH-->
+                    <input type="textarea" name="search" placeholder="Search Room">
+                    <button id="add" onclick="pushFunction()"
+                        class="flex justify-center items-center h-10 w-10 p-5 text-4xl text-purple-500 font-bold">+</button>
+                </div>
+            </div>
+        </header>
+        <aside class="fixed inset-y-0 left-0 bg-purple-500 shadow-md max-h-screen w-60">
+            <div class="flex flex-col justify-between h-full">
+                <div class="flex-grow">
+                    <div class="px-4 py-6 text-center border-b">
+                        <h1 class="text-3xl font-bold leading-none text-orange-600"><span
+                                class="text-3xl text-purple-400">Precious </span>Hotel
+                        </h1>
+                    </div>
+                    <div class="p-4">
+                        <ul id="rooms" class="space-y-2">
+                            <p id="init"
+                                class="border-white border-solid text-center rounded-xl py-2 text-orange-500 font-bold">
+                                XX</p>
+                            <li
+                                class="flex items-center bg-white hover:bg-purple-300 rounded-xl font-bold text-blue-500 py-3 px-4">
+                                Home
+                            </li>
+                            <li
+                                class="flex items-center bg-white hover:bg-purple-300 rounded-xl font-bold text-blue-500 py-3 px-4">
+                                Rooms
+                            </li>
+                            <li class="flex bg-white hover:bg-purple-300 rounded-xl font-bold text-blue-500 py-3 px-4">
+                                Reservation
+                            </li>
+                            <li class="flex bg-white hover:bg-purple-300 rounded-xl font-bold text-blue-500 py-3 px-4">
+                                Staff
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="flex justify-center p-4 space-x-2 border">
+                    <button type="button"
+                        class="inline-flex h-8 px-5 rounded-xl bg-purple-500 text-orange-400 hover:text-white text-2xl font-semibold transition">
+                        <span class="font-bold text-sm ml-2">Logout</span>
+                    </button>
+                </div>
+            </div>
+        </aside>
+
+        <main class="bg-[url('./Assests/Hotel.bg.jpg')] ml-60 pt-20 max-h-screen overflow-auto">
+
+            <!---GREETING-->
+            <p id="checkTime" class="text-pink-500 text-2xl font-bold">Greeting</p>
+
+            <!---ROOMS-->
+            <div class="grid grid-cols-2 space-x-2 py-8">
+                <div class="bg-orange-500 md:items-stretch rounded-3xl text-pink-500 p-4 mb-2">
+                    <div class="grid gird justify-center md:flex">
+                        <div class="grid grid-cols-2 gap-4">
+                            <div class="col-span-2">
+                                <div class="p-4 bg-green-100 rounded-xl">
+                                    <div class="font-bold text-2xl leading-none">35</div>
+                                    <div class="font-bold text-xl text-gray-800 leading-none mt-2">Total
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="p-4 bg-yellow-100 rounded-xl text-gray-800">
+                                <div class="font-bold text-2xl leading-none">20</div>
+                                <div class="mt-2">Booked</div>
+                            </div>
+                            <div class="p-4 bg-yellow-100 rounded-xl text-gray-800">
+                                <div class="font-bold text-2xl leading-none">15</div>
+                                <div class="mt-2">Available</div>
+                            </div>
+                            <div class="col-span-2">
+                                <div class="p-4 bg-purple-100 rounded-xl text-gray-800">
+                                    <div class="font-bold text-xl leading-none">Daily Booking</div>
+                                    <div class="mt-2">5 completed</div>
+                                </div>
+                            </div>
+                        </div>`
+                    </div>
+                </div>
+
+                <!--BOOKING FORM-->
+
+                <form id="bookForm" onsubmit="return book();"
+                    class="grid grid justify-center p-10 bg-orange-500 text-purple-500 rounded-xl">
+                    <label for="name">Name</label>
+                    <input type="text" name="name" required><br>
+                    <label for="number">Phone No.</label>
+                    <input type="number" name="email" required><br>
+                    <label for="email">Email</label>
+                    <input type="email" name="email" required><br>
+                    <label for="date">Date</label>
+                    <input type="date" name="date" required><br>
+                    <input type="submit" value="Go!" disabled id="bookGo">
+                </form>
+            </div>
+    </div>
+    <hr class="my-10">
+    </main>
+
+    <hr class="my-10">
+
+    <!--TO ADD ROOMS-->
+    <section class="ml-60 grid grid-cols-2 p-2 py-7 space-y-20 w-100 h-100 bg-orange-500 text-purple-700">
+        <div class="p-4">
+            <h2 class="text-2xl font-bold mb-4">ROOMS</h2>
+            <div class="space-y-4">
+                <div id="remove" class="p-6 bg-white border rounded-xl text-gray-800 space-y-2">
+                    <div class="flex justify-end">
+                        <button onclick="myFunction()" class="bg-red-600  border-2 w-4 h-6 text-white">X</button>
+                    </div>
+                    <div>
+                        <img class="w-80 h-full p-2" src="Assests/Hotel-E1.jpeg">
+                    </div>
+                    <div class="flex justify-between">
+                        <div class="text-gray-400 text-xs">Royal 402</div>
+                        <div class="text-gray-400 text-xs">$450</div>
+                    </div>
+                </div>
+                <div id="remove" class="p-4 bg-white border rounded-xl text-gray-800 space-y-2">
+                    <div class="flex justify-end">
+                        <button onclick="myFunction()" class="bg-red-600  border-2 w-4 h-6 text-white">X</button>
+                    </div>
+                    <div>
+                        <img class="w-80 h-full p-2" src="Assests/Hotel-E.jpeg">
+                    </div>
+                    <div class="flex justify-between">
+                        <div class="text-gray-400 text-xs">E-Class 303</div>
+                        <div class="text-gray-400 text-xs">$350</div>
+                    </div>
+                </div>
+                <div id="remove" class="p-4 bg-white border rounded-xl text-gray-800 space-y-2">
+                    <div class="flex justify-end">
+                        <button onclick="myFunction()" class="bg-red-600  border-2 w-6 h-6 text-white">X</button>
+                    </div>
+                    <div>
+                        <img class="w-80 h-full p-2" src="Assests/Hotel-E2.jpeg">
+                    </div>
+                    <div class="flex justify-between">
+                        <div class="text-gray-400 text-xs">E-Class 301</div>
+                        <div class="text-gray-400 text-xs">$400</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="p-4">
+            <div class="space-y-4">
+                <div id="remove" class="p-4 bg-white border rounded-xl text-gray-800 space-y-2">
+                    <div class="flex justify-end">
+                        <button onclick="myFunction()" class="bg-red-600  border-2 w-6 h-6 text-white">X</button>
+                    </div>
+                    <div>
+                        <img class="w-80 h-full p-2" src="Assests/Hotel.jpeg">
+                    </div>
+                    <div class="flex justify-between">
+                        <div class="text-gray-400 text-xs">E-Class 304</div>
+                        <div class="text-gray-400 text-xs">$400</div>
+                    </div>
+                </div>
+                <div id="remove" class="p-4 bg-white border rounded-xl text-gray-800 space-y-2">
+                    <div class="flex justify-end">
+                        <button onclick="myFunction()" class="bg-red-600  border-2 w-4 h-6 text-white">X</button>
+                    </div>
+                    <div>
+                        <img class="w-80 h-full p-2" src="Assests/Hotel-E4.jpeg">
+                    </div>
+                    <div class="flex justify-between">
+                        <div class="text-gray-400 text-xs">Royal 406</div>
+                        <div class="text-gray-400 text-xs">$400</div>
+                    </div>
+                </div>
+                <div id="remove" class="p-4 bg-white border rounded-xl text-gray-800 space-y-2">
+                    <div class="flex justify-end">
+                        <button onclick="myFunction()" class="bg-red-600  border-2 w-4 h-6 text-white">X</button>
+                    </div>
+                    <div>
+                        <img class="w-80 h-full p-2" src="Assests/Hotel-E3.jpeg">
+                        <div class="flex justify-between">
+                            <div class="text-gray-400 text-xs">Royal 408</div>
+                            <div class="text-gray-400 text-xs">$400</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script src="hotel.js"></script>
+
+    </div>
+</body>
+
+</html>
